@@ -13,6 +13,7 @@ import {
 } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import authReducer from './slices/authSlice';
+import documentReducer from './slices/documentSlice';
 import { encryptTransform } from './encryptedStorage';
 import { AuthState } from '@interfaces/index';
 
@@ -71,6 +72,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    document: documentReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

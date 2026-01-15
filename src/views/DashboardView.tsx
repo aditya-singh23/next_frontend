@@ -113,9 +113,20 @@ export default function DashboardView() {
               <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
               <p className="text-sm text-gray-600 mt-1">Welcome back, {user?.name}!</p>
             </div>
-            <Button onClick={handleLogout} variant="secondary">
-              Logout
-            </Button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => router.push(ROUTES.DOCUMENTS)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                Upload Documents
+              </button>
+              <Button onClick={handleLogout} variant="secondary">
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </header>
