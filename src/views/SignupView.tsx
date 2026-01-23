@@ -4,13 +4,25 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { useAppDispatch, useAppSelector } from '@hooks/index';
 import { signupUser, clearErrors } from '@store/slices/authSlice';
 import { signupSchema, SignupFormData } from '@validationSchemas/index';
 import Button from '@components/Button';
 import Input from '@components/Input';
-import GoogleOAuthButton from '@components/GoogleOAuthButton';
 import { ROUTES } from '@constants/index';
+
+const GoogleOAuthButton = dynamic(() => import('@components/GoogleOAuthButton'), {
+  loading: () => (
+    <button
+      disabled
+      className="w-full flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-gray-400 cursor-not-allowed"
+    >
+      <span className="animate-pulse">Loading...</span>
+    </button>
+  ),
+  ssr: true,
+});
 
 export default function SignupView() {
   const router = useRouter();

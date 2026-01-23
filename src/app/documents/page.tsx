@@ -2,9 +2,25 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { useAppSelector } from '@hooks/index';
-import DocumentUpload from '@components/DocumentUpload';
-import DocumentList from '@components/DocumentList';
+
+const DocumentUpload = dynamic(() => import('@components/DocumentUpload'), {
+  loading: () => (
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="h-64 bg-gray-200 rounded-lg animate-pulse"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const DocumentList = dynamic(() => import('@components/DocumentList'), {
+  loading: () => (
+    <div className="flex justify-center items-center py-12">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+  ),
+});
 
 export default function DocumentsPage() {
   const router = useRouter();
